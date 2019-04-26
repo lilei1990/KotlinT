@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme.如果不加Base有时候预览界面不显示,不知道为什么,查看层级结构这个主题继承的也没搞明白继承的意义?留个坑 -->
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+</resources>

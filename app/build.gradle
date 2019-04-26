@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-kapt'
+//
+//kapt {
+//    arguments {
+//        arg("moduleName", project.getName())
+//    }
+//    generateStubs = true
+//}
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    defaultConfig {
+        applicationId rootProject.ext.android["applicationId"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        //MultiDex分包方法
+        multiDexEnabled true
+        ndk {
+            //APP的build.gradle设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a'
+        }
+    }
+    //  签名文件信息配置
+    signingConfigs {
+        debug {
+            storeFile file(rootProject.ext.signingConfigs["KEY_PATH"])
+            storePassword rootProject.ext.signingConfigs["KEY_PASS"]
+            keyAlias rootProject.ext.signingConfigs["ALIAS_NAME"]
+            keyPassword rootProject.ext.signingConfigs["ALIAS_PASS"]
+        }
+        config {
+            storeFile file(rootProject.ext.signingConfigs["KEY_PATH"])
+            storePassword rootProject.ext.signingConfigs["KEY_PASS"]
+            keyAlias rootProject.ext.signingConfigs["ALIAS_NAME"]
+            keyPassword rootProject.ext.signingConfigs["ALIAS_PASS"]
+        }
+    }
+    buildTypes {
+
+        release {
+            //开启代码混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation  rootProject.ext.dependencies["appcompat-v7"]
+    implementation  rootProject.ext.dependencies["constraint-layout"]
+    //如果是模块模式则引用各个module
+    if (!Boolean.valueOf(rootProject.ext.isBuildModule)) {
+        implementation project(":common-base")
+        implementation project(":module-mockLocation")
+    }
+
+//    kapt   rootProject.ext.dependencies["arouter-compiler"]
+}
