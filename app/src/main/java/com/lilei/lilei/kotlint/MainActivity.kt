@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ActivityUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import com.alibaba.android.arouter.launcher.ARouter
+import com.config.ARouterConfig
 import com.lilei.common_base.test.CommonBaseMainActivity
 
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
-            ARouter.getInstance().build("/CommonBase/activity").navigation()
+            ARouter.getInstance().build(ARouterConfig.LOC_HOME).navigation()
 //            ActivityUtils.startActivity(CommonBaseMainActivity::class.java)
         }
         button1.setOnClickListener {

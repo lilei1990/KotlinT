@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MockLocationApplication</string>
+    <string name="title_activity_loc__home">Loc_HomeActivity</string>
 </resources>
