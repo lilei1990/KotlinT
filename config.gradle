@@ -16,6 +16,7 @@ ext {
             versionCode      : 64,
             versionName      : "4.0.64"
     ]
+    //key配置
     signingConfigs = [
             KEY_PATH  : "D:/farenkey.jks",
             KEY_PASS  : "123456",
@@ -113,6 +114,20 @@ ext {
             //bugly
             "bugly_crashreport"               : "com.tencent.bugly:crashreport:2.8.6.0",
             "bugly_nativecrashreport"         : "com.tencent.bugly:nativecrashreport:3.6.0.1",
+            //高德地图
+//            "3dmap"                   : "com.amap.api:3dmap:6.4.1",
+//            "location"                : "com.amap.api:location:4.3.0",
+//            "search"                  : "com.amap.api:search:6.1.0",
+            //3D地图
+            "amap_3dmap"                   : 'com.amap.api:3dmap:latest.integration',
+            //2D地图
+            "amap_map2d"                   : 'com.amap.api:map2d:latest.integration',
+            //导航
+            "amap_navi-3dmap"              : 'com.amap.api:navi-3dmap:latest.integration',
+            //搜索
+            "amap_search"                  : 'com.amap.api:search:latest.integration',
+            //定位
+            "amap_location"                : 'com.amap.api:location:latest.integration',
 
     ]
 

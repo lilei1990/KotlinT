@@ -11,7 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common-base" />
-            <option value="$PROJECT_DIR$/common-conf" />
+            <option value="$PROJECT_DIR$/common-ex-conf" />
+            <option value="$PROJECT_DIR$/lib-amap" />
             <option value="$PROJECT_DIR$/module-mockLocation" />
           </set>
         </option>

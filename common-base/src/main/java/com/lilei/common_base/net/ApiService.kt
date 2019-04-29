@@ -8,8 +8,6 @@ import retrofit2.http.POST
 
 
 /**
- *    author : JOJO
- *    e-mail : 18510829974@163.com
  *    date   : 2018/12/2 1:49 PM
  *    desc   : Api接口配置
  */

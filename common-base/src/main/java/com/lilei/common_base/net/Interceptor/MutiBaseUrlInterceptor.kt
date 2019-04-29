@@ -23,12 +23,12 @@ class MutiBaseUrlInterceptor : Interceptor {
         val builder = request.newBuilder()
         //从request中获取headers，通过给定的键url_name
         val headerValues = request.headers("base_url")
-        if (headerValues != null && headerValues!!.size > 0) {
+        if (headerValues != null && headerValues.size > 0) {
             //如果有这个header，先将配置的header删除，因此header仅用作app和okhttp之间使用
             builder.removeHeader("base_url")
             //匹配获得新的BaseUrl
-            val headerValue = headerValues!!.get(0)
-            var newBaseUrl: HttpUrl? = null
+            val headerValue = headerValues.get(0)
+            var newBaseUrl: HttpUrl?
             if ("kaiyan" == headerValue) {
                 newBaseUrl = HttpUrl.parse(ApiService.BASE_SERVER_IP_2)
             } else {

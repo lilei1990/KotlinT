@@ -2,8 +2,6 @@ package com.smart.novel.net
 
 
 /**
- *    author : JOJO
- *    e-mail : 18510829974@163.com
  *    date   : 2018/12/2 1:49 PM
  *    desc   : 数据格式统一封装(data为实际数据)
  */

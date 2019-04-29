@@ -1,8 +1,6 @@
 package com.lilei.common_base.test
 
 /**
- *    author : JOJO
- *    e-mail : 18510829974@163.com
  *    date   : 2019/1/23 8:15 PM
  *    desc   :
  */

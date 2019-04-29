@@ -47,11 +47,15 @@ android {
             keyPassword rootProject.ext.signingConfigs["ALIAS_PASS"]
         }
     }
+//    //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
+//    lintOptions {
+//        abortOnError false
+//    }
     buildTypes {
 
         release {
             //开启代码混淆
-            minifyEnabled false
+            minifyEnabled true
             //Zipalign优化
             zipAlignEnabled false
             // 移除无用的resource文件
@@ -60,7 +64,15 @@ android {
             signingConfig signingConfigs.config
         }
     }
-
+//    //渠道Flavors，配置不同风格的app,友盟渠道统计时用到
+//    productFlavors {
+//        "offical" {}
+//        "360" {}
+//        yingyongbao {}
+//        wandoujia {}
+//        baidu {}
+//        "91" {}
+//    }
 }
 
 dependencies {

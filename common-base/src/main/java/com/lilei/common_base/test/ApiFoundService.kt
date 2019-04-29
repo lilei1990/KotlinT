@@ -1,4 +1,3 @@
-package com.jojo.design.module_core.net
 
 import com.lilei.common_base.test.CategoryBean
 import com.lilei.common_base.test.ItemEntity
@@ -9,9 +8,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 /**
- *    author : JOJO
- *    e-mail : 18510829974@163.com
- *    date   : 2018/12/7 3:42 PM
+
  *    desc   : 开眼视频：接口管理
  */
 interface ApiFoundService {

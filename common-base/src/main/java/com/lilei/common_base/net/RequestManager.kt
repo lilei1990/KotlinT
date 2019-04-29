@@ -17,6 +17,7 @@
 
 package com.lilei.common_network
 
+import com.blankj.utilcode.util.NetworkUtils
 import com.lilei.common_base.net.BaseObserverListtener
 import com.lilei.common_base.net.BaseResponse
 import com.lilei.common_base.net.bean.ErrorBean
@@ -34,6 +35,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
+import kotlin.math.absoluteValue
 
 /**
  * 网络请求模式的基类，所有的请求封装都应该要继承此类。这里会提供网络模块的配置，以及请求的具体逻辑处理等。
@@ -52,10 +54,11 @@ object RequestManager {
 
 
     val requestService: ApiService
-        get() = getRetrofit().create<ApiService>(ApiService::class.java!!)
+        get() = getRetrofit().create<ApiService>(ApiService::class.java)
 
 
      fun getRetrofit(): Retrofit {
+
         if (retrofit == null) {
             synchronized(RequestManager::class.java) {
                 if (retrofit == null) {
@@ -109,6 +112,7 @@ object RequestManager {
                 .compose(RxSchedulers.io_main())
                 .subscribeWith(object : DisposableObserver<BaseHttpResponse<T>>() {
 
+                    @Suppress("DEPRECATED_IDENTITY_EQUALS")
                     override fun onNext(result: BaseHttpResponse<T>) {
                         if (result.code === 200) {
                             observerListener.onSuccess(result.data!!)
@@ -140,6 +144,7 @@ object RequestManager {
                 .compose(RxSchedulers.io_main())
                 .subscribeWith(object : DisposableObserver<BaseResponse<T>>() {
 
+                    @Suppress("DEPRECATED_IDENTITY_EQUALS", "UNCHECKED_CAST")
                     override fun onNext(result: BaseResponse<T>) {
                         if (result.code === 200) {
                             if (result.data?.content != null) {

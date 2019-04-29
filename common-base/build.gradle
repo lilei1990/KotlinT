@@ -6,6 +6,7 @@ if (Boolean.valueOf(rootProject.ext.isBuildModule)) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
 kapt {
     arguments {
         arg("moduleName", project.getName())
@@ -53,12 +54,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api project(path: ':common-ex-conf')
+
     api rootProject.ext.dependencies["appcompat-v7"]
     api rootProject.ext.dependencies["constraint-layout"]
-    implementation project(":common-conf")
+
     //bugly
-    implementation rootProject.ext.dependencies["bugly_crashreport"]
-    implementation rootProject.ext.dependencies["bugly_nativecrashreport"]
+    api rootProject.ext.dependencies["bugly_crashreport"]
+    api rootProject.ext.dependencies["bugly_nativecrashreport"]
     //工具类
     api rootProject.ext.dependencies["utilcode"]
     //rxjava
@@ -73,6 +76,5 @@ dependencies {
     //ARouter
     api rootProject.ext.dependencies["arouter"]
     kapt rootProject.ext.dependencies["arouter-compiler"]
-
 
 }

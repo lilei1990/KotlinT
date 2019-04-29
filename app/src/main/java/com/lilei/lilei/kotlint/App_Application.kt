@@ -1,14 +1,6 @@
 package com.lilei.lilei.kotlint
 
-import android.app.Application
-import android.content.Context
-import android.support.multidex.MultiDex
-import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.Utils
 import com.lilei.common_base.BaseApplication
-import com.lilei.common_base.Conf.isDebug
-import kotlin.properties.Delegates
 
 /**
  * 作者 : LiLei

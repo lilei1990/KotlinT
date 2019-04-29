@@ -11,10 +11,23 @@ android {
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         //MultiDex分包方法
         multiDexEnabled true
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","x86_64"
+        }
     }
+
 
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //高德地图
+    api rootProject.ext.dependencies["amap_3dmap"]
+    api rootProject.ext.dependencies["amap_location"]
+    api rootProject.ext.dependencies["amap_search"]
 }
+repositories {
+    mavenCentral()
+}
+
+

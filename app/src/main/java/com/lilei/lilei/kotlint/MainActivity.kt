@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             ARouter.getInstance().build("/location/activity").navigation()
 //            ActivityUtils.startActivity(CommonBaseMainActivity::class.java)
         }
+        map.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View? {

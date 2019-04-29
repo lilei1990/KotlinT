@@ -3,8 +3,6 @@ package com.lilei.common_base.test
 import java.io.Serializable
 
 /**
- *    author : JOJO
- *    e-mail : 18510829974@163.com
  *    date   : 2019/1/18 2:38 PM
  *    desc   : 分类详情页数据实体
  */
