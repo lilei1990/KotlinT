@@ -26,6 +26,7 @@ open class BaseApplication : ExBaseApplication() {
         Utils.init(this)
         //初始化阿里路由
         initARouter()
+
     }
 
     private fun initARouter() {
