@@ -51,7 +51,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //如果是模块模式则引用各个module
     implementation project(":common-base")
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
     kapt rootProject.ext.dependencies["arouter-compiler"]
+    api rootProject.ext.dependencies["FlycoTabLayout"]
 }

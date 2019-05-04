@@ -3,7 +3,6 @@
     package="com.example.module_mock_location">
 
     <application android:allowBackup="true">
-        <activity android:name=".LocationActivity" />
         <activity
             android:name=".Loc_HomeActivity"
             android:label="@string/title_activity_loc__home"
