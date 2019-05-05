@@ -3,14 +3,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'kotlin-kapt'
-//
-//kapt {
-//    arguments {
-//        arg("moduleName", project.getName())
-//    }
-//    generateStubs = true
-//}
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
@@ -86,5 +86,5 @@ dependencies {
         implementation project(":module-mockLocation")
     }
 
-//    kapt   rootProject.ext.dependencies["arouter-compiler"]
+    kapt   rootProject.ext.dependencies["arouter-compiler"]
 }
