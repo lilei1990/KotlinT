@@ -1,18 +1,24 @@
 package com.example.module_mock_location.mocklocationlib;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.module_mock_location.R;
 
 import java.text.SimpleDateFormat;
@@ -20,12 +26,8 @@ import java.util.Date;
 
 /**
  * LocationWigdet:模拟位置信息提示控件
- * Author: xp
- * Date: 18/7/12 22:22
- * Email: xiexiepro@gmail.com
- * Blog: http://XieXiePro.github.io
  */
-public class LocationWidget extends LinearLayout {
+public class LocationWidget extends DialogFragment {
     MockLocationManager mockLocationManager;
     private Context context;
     private TextView tvProvider = null;
@@ -37,38 +39,49 @@ public class LocationWidget extends LinearLayout {
     private Button btnStopMock = null;
     private ImageView locationWigdetTipIv;
     private LinearLayout locationWigdetDataLl;
+    private static LocationWidget sFragment;
 
 
-    public LocationWidget(Context context) {
-        super(context);
+    private LocationWidget(Context context) {
         this.context = context;
-        init(context);
     }
 
-    public LocationWidget(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        init(context);
+
+    public static LocationWidget newInstance(Context context) {
+        if (sFragment == null) {
+            sFragment = new LocationWidget(context);
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString("tittle", "标题");
+        sFragment.setArguments(bundle);
+        return sFragment;
     }
 
-    public LocationWidget(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
-        init(context);
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.location_wiget_layout, container, true);
+        return layout;
     }
 
-    private void init(final Context context) {
-        View layout = LayoutInflater.from(context).inflate(R.layout.location_wiget_layout, this, true);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(view);
+    }
+
+    private void init(View layout) {
         tvProvider = (TextView) layout.findViewById(R.id.tv_provider);
         tvTime = (TextView) layout.findViewById(R.id.tv_time);
         tvLatitude = (TextView) layout.findViewById(R.id.tv_latitude);
         tvLongitude = (TextView) layout.findViewById(R.id.tv_longitude);
-        tvSystemMockPositionStatus = (TextView) findViewById(R.id.tv_system_mock_position_status);
-        locationWigdetTipIv = (ImageView) findViewById(R.id.location_wigdet_tip_iv);
-        locationWigdetDataLl = (LinearLayout) findViewById(R.id.location_wigdet_data_ll);
+        tvSystemMockPositionStatus = (TextView) layout.findViewById(R.id.tv_system_mock_position_status);
+        locationWigdetTipIv = (ImageView) layout.findViewById(R.id.location_wigdet_tip_iv);
+        locationWigdetDataLl = (LinearLayout) layout.findViewById(R.id.location_wigdet_data_ll);
 
-        btnStartMock = (Button) findViewById(R.id.btn_start_mock);
-        btnStopMock = (Button) findViewById(R.id.btn_stop_mock);
+        btnStartMock = (Button) layout.findViewById(R.id.btn_start_mock);
+        btnStopMock = (Button) layout.findViewById(R.id.btn_stop_mock);
 
         mockLocationManager = new MockLocationManager();
         btnStartMock.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +119,9 @@ public class LocationWidget extends LinearLayout {
             startMockLocation();
             btnStartMock.setEnabled(false);
             btnStopMock.setEnabled(true);
+            refreshData();
+        } else {
+            ToastUtils.showLong("模拟位置不可用");
         }
     }
 

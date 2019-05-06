@@ -15,10 +15,7 @@ import java.util.List;
 
 /**
  * MockLocationManager:模拟地址管理类
- * Author: xp
- * Date: 18/7/12 22:01
- * Email: xiexiepro@gmail.com
- * Blog: http://XieXiePro.github.io
+
  */
 public class MockLocationManager {
 
@@ -55,9 +52,9 @@ public class MockLocationManager {
      */
     public boolean bRun = false;
 
-    public double latitude=28.615235;
+    public static double latitude=28.615235;
 
-    public double longitude=116.432135;
+    public static double longitude=116.432135;
 
 
     /**
@@ -207,7 +204,7 @@ public class MockLocationManager {
     }
 
     public void setLocationData(double lat, double lon) {
-//        latitude = lat;
-//        longitude = lon;
+        latitude = lat;
+        longitude = lon;
     }
 }

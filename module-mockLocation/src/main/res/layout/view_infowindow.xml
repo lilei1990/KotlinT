@@ -32,12 +32,7 @@
             android:lines="2"
             android:ellipsize="end"
            />
-        <com.example.module_mock_location.mocklocationlib.LocationWidget
-            android:id="@+id/id_location_wigdet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-        </com.example.module_mock_location.mocklocationlib.LocationWidget>
         <View
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"

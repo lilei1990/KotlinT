@@ -83,35 +83,35 @@ public class LocationDialog extends Dialog {
 
         public LocationDialog create() {
             final LocationDialog mLocationDialog = new LocationDialog(context);
-            View view = LayoutInflater.from(context).inflate(R.layout.location_content_view, null);
-            idLocationWigdet = (LocationWidget) view.findViewById(R.id.id_location_wigdet);
-
-            // set the confirm button
-            if (positiveButtonText != null) {
-                ((Button) view.findViewById(R.id.btn_mock))
-                        .setText(positiveButtonText);
-                if (positiveButtonClickListener != null) {
-                    view.findViewById(R.id.btn_mock)
-                            .setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    positiveButtonClickListener.onClick(mLocationDialog,
-                                            DialogInterface.BUTTON_POSITIVE);
-                                    //点击按钮停止定位
-                                    idLocationWigdet.stopMockLocation();
-                                }
-                            });
-                }
-            } else {
-                // if no confirm button just set the visibility to GONE
-                view.findViewById(R.id.btn_mock)
-                        .setVisibility(View.GONE);
-            }
-            idLocationWigdet.setMangerLocationData(latitude, longitude);
-            idLocationWigdet.startMockLocation();
-            idLocationWigdet.refreshData();
-            mLocationDialog.setTitle("模拟定位");
-            mLocationDialog.setContentView(view);
+//            View view = LayoutInflater.from(context).inflate(R.layout.location_content_view, null);
+//            idLocationWigdet = (LocationWidget) view.findViewById(R.id.id_location_wigdet);
+//
+//            // set the confirm button
+//            if (positiveButtonText != null) {
+//                ((Button) view.findViewById(R.id.btn_mock))
+//                        .setText(positiveButtonText);
+//                if (positiveButtonClickListener != null) {
+//                    view.findViewById(R.id.btn_mock)
+//                            .setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    positiveButtonClickListener.onClick(mLocationDialog,
+//                                            DialogInterface.BUTTON_POSITIVE);
+//                                    //点击按钮停止定位
+//                                    idLocationWigdet.stopMockLocation();
+//                                }
+//                            });
+//                }
+//            } else {
+//                // if no confirm button just set the visibility to GONE
+//                view.findViewById(R.id.btn_mock)
+//                        .setVisibility(View.GONE);
+//            }
+//            idLocationWigdet.setMangerLocationData(latitude, longitude);
+//            idLocationWigdet.startMockLocation();
+//            idLocationWigdet.refreshData();
+//            mLocationDialog.setTitle("模拟定位");
+//            mLocationDialog.setContentView(view);
             return mLocationDialog;
         }
     }

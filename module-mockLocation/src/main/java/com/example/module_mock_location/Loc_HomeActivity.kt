@@ -1,45 +1,40 @@
 package com.example.module_mock_location
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
-import com.config.ARouterConfig
-
-import kotlinx.android.synthetic.main.activity_loc__home.*
+import com.amap.api.maps.model.MarkerOptions
 import com.amap.api.maps.model.MyLocationStyle
-import com.amap.api.location.AMapLocationClient
-import com.amap.api.location.AMapLocationListener
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.amap.api.maps.model.MarkerOptions
-import com.amap.api.maps.model.Marker
-import com.amap.api.maps.model.LatLng
+import com.config.ARouterConfig
+import com.example.module_mock_location.mocklocationlib.Coordtransform
+import com.example.module_mock_location.mocklocationlib.LocationBean
+import com.example.module_mock_location.mocklocationlib.LocationWidget
+import com.lilei.common_base.BaseApplication
+import kotlinx.android.synthetic.main.activity_loc__home.*
 
 
 @Route(path = ARouterConfig.LOC_HOME)
 class Loc_HomeActivity : AppCompatActivity() {
 
+    val newInstance = LocationWidget.newInstance(BaseApplication.mApplication)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loc__home)
-        button.setOnClickListener {
-            // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
-            ARouter.getInstance().build(ARouterConfig.LOC_HOME).navigation()
-//            ActivityUtils.startActivity(CommonBaseMainActivity::class.java)
-        }
-        button1.setOnClickListener {
-            // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
-            ARouter.getInstance().build("/location/activity").navigation()
-//            ActivityUtils.startActivity(CommonBaseMainActivity::class.java)
-        }
+//        button.setOnClickListener {
+//            // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
+//            ARouter.getInstance().build(ARouterConfig.LOC_HOME).navigation()
+////            ActivityUtils.startActivity(CommonBaseMainActivity::class.java)
+//        }
+//        button1.setOnClickListener {
+//            // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
+//            ARouter.getInstance().build("/location/activity").navigation()
+////            ActivityUtils.startActivity(CommonBaseMainActivity::class.java)
+//        }
         map.onCreate(savedInstanceState)
         initPermission()
 
@@ -87,6 +82,13 @@ class Loc_HomeActivity : AppCompatActivity() {
         map.map.setOnMapClickListener({
             map.map.clear(true)
             val marker = map.map.addMarker(MarkerOptions().position(it))
+            newInstance.show(supportFragmentManager,"")
+            var mLocationBean = LocationBean()
+            val gcJ02ToWGS84 = Coordtransform.GCJ02ToWGS84(it!!.longitude, it!!.latitude)
+            mLocationBean.setLatitude(gcJ02ToWGS84[1])
+            mLocationBean.setLongitude(gcJ02ToWGS84[0])
+            newInstance.setMangerLocationData(mLocationBean.latitude, mLocationBean.longitude)
+            newInstance.refreshData()
         })
         val infoWinAdapter = InfoWinAdapter()
         map.map.setInfoWindowAdapter(infoWinAdapter)
@@ -94,5 +96,15 @@ class Loc_HomeActivity : AppCompatActivity() {
             it.showInfoWindow()
             true //返回 “false”，除定义的操作之外，默认操作也将会被执行
         })
+    }
+
+//    override fun onResume() {
+//        super.onResume()
+//        newInstance.refreshData()
+//    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        newInstance.stopMock()
     }
 }

@@ -10,6 +10,7 @@ import com.amap.api.maps.AMap
 import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.Marker
 import com.example.module_mock_location.R.id.id_location_wigdet
+import com.example.module_mock_location.mocklocationlib.LocationBean
 import com.lilei.common_base.BaseApplication
 import kotlinx.android.synthetic.main.view_infowindow.view.*
 
@@ -45,15 +46,12 @@ class InfoWinAdapter : AMap.InfoWindowAdapter {
 //
 //        nameTV!!.text = agentName
 //        addrTV!!.text = String.format("sss", snippet)
-//        view.call_LL.setOnClickListener({
-//            idLocationWidget.setMangerLocationData(latLng.latitude, mLocationBean.getLongitude())
-//            idLocationWidget.startMockLocation()
-//        })
+        view.call_LL.setOnClickListener({
+
+        })
 //        id_location_wigdet.setma(mLocationBean.getLatitude(), mLocationBean.getLongitude())
 //        idLocationWidget.startMockLocation()
 
         return view
     }
-
-
 }
