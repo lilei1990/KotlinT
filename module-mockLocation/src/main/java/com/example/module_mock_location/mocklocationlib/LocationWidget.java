@@ -122,10 +122,14 @@ public class LocationWidget extends DialogFragment {
             refreshData();
         } else {
             ToastUtils.showLong("模拟位置不可用");
+            refreshData();
         }
     }
 
     public void refreshData() {
+        if (mockLocationManager==null) {
+            return;
+        }
         // 判断系统是否允许模拟位置，并addTestProvider
         if (mockLocationManager.getUseMockPosition(context)) {
             if (mockLocationManager.bRun) {

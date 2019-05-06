@@ -98,10 +98,10 @@ class Loc_HomeActivity : AppCompatActivity() {
         })
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        newInstance.refreshData()
-//    }
+    override fun onResume() {
+        super.onResume()
+        newInstance.refreshData()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
